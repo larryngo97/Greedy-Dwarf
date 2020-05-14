@@ -1,0 +1,2699 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://Instances/Actors/Dwarf.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Instances/wall.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scripts/Minimap/Minimap.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scene/items.gd" type="Script" id=4]
+[ext_resource path="res://Scene/Main_World.gd" type="Script" id=5]
+[ext_resource path="res://Assets/texture_stone1.PNG" type="Texture" id=6]
+[ext_resource path="res://Scene/Control.gd" type="Script" id=7]
+[ext_resource path="res://Scene/ScorePopUp.gd" type="Script" id=8]
+[ext_resource path="res://Instances/Items/Treasure_Base.gd" type="Script" id=9]
+[ext_resource path="res://Instances/Items/Pegasus_Boots.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Assets/texture_stone2.PNG" type="Texture" id=11]
+[ext_resource path="res://Instances/Items/Treasure_Base.tscn" type="PackedScene" id=12]
+<<<<<<< HEAD
+[ext_resource path="res://Instances/Items/Health_Pack.tscn" type="PackedScene" id=13]
+=======
+[ext_resource path="res://Instances/Actors/Dragon.tscn" type="PackedScene" id=13]
+>>>>>>> b028faeaa921803607a2ae7df63c9c89c1c6be18
+
+[sub_resource type="ConvexPolygonShape2D" id=1]
+points = PoolVector2Array( 64, 64, 0, 64, 0, 0, 64, 0 )
+
+[sub_resource type="TileSet" id=2]
+0/name = "texture_stone2.PNG 0"
+0/texture = ExtResource( 11 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 128, 96, 64, 64 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 1 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+0/z_index = 0
+
+[node name="World" type="Node2D"]
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_vertical_guides_": [ 923.0 ]
+}
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Minimap" parent="CanvasLayer" instance=ExtResource( 3 )]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -200.0
+margin_top = 0.0
+margin_right = 0.0
+margin_bottom = 200.0
+player = NodePath("../../../World/Dwarf")
+
+[node name="ScorePopUp" type="Popup" parent="CanvasLayer"]
+margin_left = 454.0
+margin_top = 335.0
+margin_right = 734.0
+margin_bottom = 471.0
+script = ExtResource( 8 )
+
+[node name="Label" type="Label" parent="CanvasLayer/ScorePopUp"]
+margin_right = 56.0
+margin_bottom = 24.0
+text = "Score: "
+
+[node name="items" type="Node2D" parent="."]
+script = ExtResource( 4 )
+
+[node name="Pegasus_Boots" parent="items" groups=[
+"minimap_objects",
+] instance=ExtResource( 10 )]
+position = Vector2( 873.554, 605.469 )
+_weight = -150
+_value = 75
+
+[node name="Health_Pack" parent="items" groups=[
+"minimap_objects",
+] instance=ExtResource( 13 )]
+position = Vector2( -183.119, 1644.26 )
+
+[node name="Treasure_Base" parent="items" groups=[
+"minimap_objects",
+] instance=ExtResource( 12 )]
+position = Vector2( 400.821, 238.183 )
+script = ExtResource( 9 )
+_weight = 100
+_value = 100
+_name = "Fries"
+
+[node name="Treasure_Base2" parent="items" groups=[
+"minimap_objects",
+] instance=ExtResource( 12 )]
+position = Vector2( -211.393, 896.824 )
+script = ExtResource( 9 )
+_weight = 100
+_value = 100
+_name = "Fries"
+
+[node name="Treasure_Base3" parent="items" groups=[
+"minimap_objects",
+] instance=ExtResource( 12 )]
+position = Vector2( -230.527, 463.934 )
+script = ExtResource( 9 )
+_weight = 100
+_value = 100
+_name = "Fries"
+
+[node name="Treasure_Base4" parent="items" groups=[
+"minimap_objects",
+] instance=ExtResource( 12 )]
+position = Vector2( 1546.48, 894.433 )
+script = ExtResource( 9 )
+_weight = 100
+_value = 100
+_name = "Fries"
+
+[node name="map" type="Node2D" parent="."]
+
+[node name="Border" type="Node2D" parent="map"]
+
+[node name="wall" type="Sprite" parent="map/Border"]
+position = Vector2( 32, 32 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border/wall" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall2" type="Sprite" parent="map/Border"]
+position = Vector2( 32, 96 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border/wall2" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall3" type="Sprite" parent="map/Border"]
+position = Vector2( 32, 160 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border/wall3" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall4" type="Sprite" parent="map/Border"]
+position = Vector2( 32, 224 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border/wall4" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall5" type="Sprite" parent="map/Border"]
+position = Vector2( 32, 288 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border/wall5" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall6" type="Sprite" parent="map/Border"]
+position = Vector2( 32, 352 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border/wall6" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall7" type="Sprite" parent="map/Border"]
+position = Vector2( 32, 416 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border/wall7" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall8" type="Sprite" parent="map/Border"]
+position = Vector2( 32, 480 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border/wall8" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall9" type="Sprite" parent="map/Border"]
+position = Vector2( 32, 544 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border/wall9" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall10" type="Sprite" parent="map/Border"]
+position = Vector2( 32, 608 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border/wall10" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall11" type="Sprite" parent="map/Border"]
+position = Vector2( 32, 672 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border/wall11" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="Border2" type="Node2D" parent="map"]
+rotation = -1.5708
+
+[node name="wall" type="Sprite" parent="map/Border2"]
+position = Vector2( 32, 32 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border2/wall" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall2" type="Sprite" parent="map/Border2"]
+position = Vector2( 32, 96 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border2/wall2" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall3" type="Sprite" parent="map/Border2"]
+position = Vector2( 32, 160 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border2/wall3" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall4" type="Sprite" parent="map/Border2"]
+position = Vector2( 32, 224 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border2/wall4" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall5" type="Sprite" parent="map/Border2"]
+position = Vector2( 32, 288 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border2/wall5" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall6" type="Sprite" parent="map/Border2"]
+position = Vector2( 32, 352 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border2/wall6" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall7" type="Sprite" parent="map/Border2"]
+position = Vector2( 32, 416 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border2/wall7" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall8" type="Sprite" parent="map/Border2"]
+position = Vector2( 32, 480 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border2/wall8" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall9" type="Sprite" parent="map/Border2"]
+position = Vector2( 32, 544 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border2/wall9" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall10" type="Sprite" parent="map/Border2"]
+position = Vector2( 32, 608 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border2/wall10" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall11" type="Sprite" parent="map/Border2"]
+position = Vector2( 32, 672 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border2/wall11" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall12" type="Sprite" parent="map/Border2"]
+position = Vector2( 32, 736 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border2/wall12" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall13" type="Sprite" parent="map/Border2"]
+position = Vector2( 32, 800 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border2/wall13" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall14" type="Sprite" parent="map/Border2"]
+position = Vector2( 32, 864 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border2/wall14" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall15" type="Sprite" parent="map/Border2"]
+position = Vector2( 32, 928 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border2/wall15" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall16" type="Sprite" parent="map/Border2"]
+position = Vector2( 32, 992 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border2/wall16" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall17" type="Sprite" parent="map/Border2"]
+position = Vector2( 32, 1056 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border2/wall17" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="Border3" type="Node2D" parent="map"]
+position = Vector2( -447.803, 767.509 )
+rotation = -1.5708
+
+[node name="wall" type="Sprite" parent="map/Border3"]
+position = Vector2( 32, 32 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border3/wall" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall2" type="Sprite" parent="map/Border3"]
+position = Vector2( 32, 96 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border3/wall2" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall3" type="Sprite" parent="map/Border3"]
+position = Vector2( 32, 160 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border3/wall3" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall4" type="Sprite" parent="map/Border3"]
+position = Vector2( 32, 224 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border3/wall4" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall5" type="Sprite" parent="map/Border3"]
+position = Vector2( 32, 288 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border3/wall5" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall6" type="Sprite" parent="map/Border3"]
+position = Vector2( 32, 352 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border3/wall6" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall7" type="Sprite" parent="map/Border3"]
+position = Vector2( 32, 416 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border3/wall7" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall8" type="Sprite" parent="map/Border3"]
+position = Vector2( 32, 480 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border3/wall8" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall9" type="Sprite" parent="map/Border3"]
+position = Vector2( 32, 544 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border3/wall9" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall10" type="Sprite" parent="map/Border3"]
+position = Vector2( 32, 608 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border3/wall10" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall11" type="Sprite" parent="map/Border3"]
+position = Vector2( 32, 672 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border3/wall11" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall12" type="Sprite" parent="map/Border3"]
+position = Vector2( 32, 736 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border3/wall12" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall13" type="Sprite" parent="map/Border3"]
+position = Vector2( 32, 800 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border3/wall13" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall14" type="Sprite" parent="map/Border3"]
+position = Vector2( 32, 864 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border3/wall14" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall15" type="Sprite" parent="map/Border3"]
+position = Vector2( 32, 928 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border3/wall15" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall16" type="Sprite" parent="map/Border3"]
+position = Vector2( 32, 992 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border3/wall16" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall17" type="Sprite" parent="map/Border3"]
+position = Vector2( 32, 1056 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border3/wall17" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="Border4" type="Node2D" parent="map"]
+position = Vector2( 1024, 0 )
+
+[node name="wall" type="Sprite" parent="map/Border4"]
+position = Vector2( 32, 32 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border4/wall" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall2" type="Sprite" parent="map/Border4"]
+position = Vector2( 32, 96 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border4/wall2" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall3" type="Sprite" parent="map/Border4"]
+position = Vector2( 32, 160 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border4/wall3" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall4" type="Sprite" parent="map/Border4"]
+position = Vector2( 32, 224 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border4/wall4" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall5" type="Sprite" parent="map/Border4"]
+position = Vector2( 32, 288 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border4/wall5" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall6" type="Sprite" parent="map/Border4"]
+position = Vector2( 32, 352 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border4/wall6" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall7" type="Sprite" parent="map/Border4"]
+position = Vector2( 32, 416 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border4/wall7" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall8" type="Sprite" parent="map/Border4"]
+position = Vector2( 32, 480 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border4/wall8" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall9" type="Sprite" parent="map/Border4"]
+position = Vector2( 32, 544 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border4/wall9" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall10" type="Sprite" parent="map/Border4"]
+position = Vector2( 32, 608 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border4/wall10" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall11" type="Sprite" parent="map/Border4"]
+position = Vector2( 32, 672 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border4/wall11" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="Border5" type="Node2D" parent="map"]
+position = Vector2( -448, 768 )
+
+[node name="wall" type="Sprite" parent="map/Border5"]
+position = Vector2( 32, 32 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border5/wall" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall2" type="Sprite" parent="map/Border5"]
+position = Vector2( 32, 96 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border5/wall2" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall3" type="Sprite" parent="map/Border5"]
+position = Vector2( 32, 160 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border5/wall3" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall4" type="Sprite" parent="map/Border5"]
+position = Vector2( 32, 224 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border5/wall4" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall7" type="Sprite" parent="map/Border5"]
+position = Vector2( 32, 416 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border5/wall7" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall8" type="Sprite" parent="map/Border5"]
+position = Vector2( 32, 480 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border5/wall8" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall9" type="Sprite" parent="map/Border5"]
+position = Vector2( 32, 544 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border5/wall9" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall10" type="Sprite" parent="map/Border5"]
+position = Vector2( 32, 608 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border5/wall10" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall11" type="Sprite" parent="map/Border5"]
+position = Vector2( 32, 672 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border5/wall11" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="Border6" type="Node2D" parent="map"]
+position = Vector2( -382.749, 1470.93 )
+rotation = -1.5708
+
+[node name="wall" type="Sprite" parent="map/Border6"]
+position = Vector2( 32, 32 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border6/wall" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall2" type="Sprite" parent="map/Border6"]
+position = Vector2( 32, 96 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border6/wall2" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall3" type="Sprite" parent="map/Border6"]
+position = Vector2( 32, 160 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border6/wall3" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall4" type="Sprite" parent="map/Border6"]
+position = Vector2( 32, 224 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border6/wall4" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall5" type="Sprite" parent="map/Border6"]
+position = Vector2( 32, 288 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border6/wall5" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall6" type="Sprite" parent="map/Border6"]
+position = Vector2( 32, 352 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border6/wall6" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall7" type="Sprite" parent="map/Border6"]
+position = Vector2( 32, 416 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border6/wall7" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall8" type="Sprite" parent="map/Border6"]
+position = Vector2( 32, 480 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border6/wall8" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall9" type="Sprite" parent="map/Border6"]
+position = Vector2( 32, 544 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border6/wall9" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall10" type="Sprite" parent="map/Border6"]
+position = Vector2( 32, 608 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border6/wall10" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall11" type="Sprite" parent="map/Border6"]
+position = Vector2( 32, 672 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border6/wall11" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall14" type="Sprite" parent="map/Border6"]
+position = Vector2( 32, 864 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border6/wall14" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall15" type="Sprite" parent="map/Border6"]
+position = Vector2( 32, 928 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border6/wall15" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall16" type="Sprite" parent="map/Border6"]
+position = Vector2( 32, 992 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border6/wall16" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall17" type="Sprite" parent="map/Border6"]
+position = Vector2( 32, 1056 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border6/wall17" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall18" type="Sprite" parent="map/Border6"]
+position = Vector2( 32, 1120 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border6/wall18" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall19" type="Sprite" parent="map/Border6"]
+position = Vector2( 32, 1184 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border6/wall19" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall20" type="Sprite" parent="map/Border6"]
+position = Vector2( 32, 1248 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border6/wall20" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall21" type="Sprite" parent="map/Border6"]
+position = Vector2( 32, 1312 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border6/wall21" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall22" type="Sprite" parent="map/Border6"]
+position = Vector2( 32, 1376 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border6/wall22" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall23" type="Sprite" parent="map/Border6"]
+position = Vector2( 32, 1440 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border6/wall23" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall24" type="Sprite" parent="map/Border6"]
+position = Vector2( 32, 1504 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border6/wall24" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall25" type="Sprite" parent="map/Border6"]
+position = Vector2( 32, 1568 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border6/wall25" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall26" type="Sprite" parent="map/Border6"]
+position = Vector2( 32, 1632 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border6/wall26" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall27" type="Sprite" parent="map/Border6"]
+position = Vector2( 32, 1696 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border6/wall27" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall28" type="Sprite" parent="map/Border6"]
+position = Vector2( 32, 1760 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border6/wall28" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="Border7" type="Node2D" parent="map"]
+position = Vector2( 1344, 704 )
+
+[node name="wall" type="Sprite" parent="map/Border7"]
+position = Vector2( 32, 32 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border7/wall" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall2" type="Sprite" parent="map/Border7"]
+position = Vector2( 32, 96 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border7/wall2" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall3" type="Sprite" parent="map/Border7"]
+position = Vector2( 32, 160 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border7/wall3" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall4" type="Sprite" parent="map/Border7"]
+position = Vector2( 32, 224 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border7/wall4" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall5" type="Sprite" parent="map/Border7"]
+position = Vector2( 32, 288 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border7/wall5" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall6" type="Sprite" parent="map/Border7"]
+position = Vector2( 32, 352 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border7/wall6" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall7" type="Sprite" parent="map/Border7"]
+position = Vector2( 32, 416 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border7/wall7" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall8" type="Sprite" parent="map/Border7"]
+position = Vector2( 32, 480 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border7/wall8" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall9" type="Sprite" parent="map/Border7"]
+position = Vector2( 32, 544 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border7/wall9" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall10" type="Sprite" parent="map/Border7"]
+position = Vector2( 32, 608 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border7/wall10" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall11" type="Sprite" parent="map/Border7"]
+position = Vector2( 32, 672 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border7/wall11" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="Border8" type="Node2D" parent="map"]
+position = Vector2( 1344, 0 )
+
+[node name="wall9" type="Sprite" parent="map/Border8"]
+position = Vector2( 32, 544 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border8/wall9" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall10" type="Sprite" parent="map/Border8"]
+position = Vector2( 32, 608 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border8/wall10" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall11" type="Sprite" parent="map/Border8"]
+position = Vector2( 32, 672 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border8/wall11" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="Border9" type="Node2D" parent="map"]
+position = Vector2( 1408, 768 )
+rotation = -1.5708
+
+[node name="wall" type="Sprite" parent="map/Border9"]
+position = Vector2( 32, 32 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border9/wall" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall2" type="Sprite" parent="map/Border9"]
+position = Vector2( 32, 96 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border9/wall2" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall3" type="Sprite" parent="map/Border9"]
+position = Vector2( 32, 160 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border9/wall3" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall4" type="Sprite" parent="map/Border9"]
+position = Vector2( 32, 224 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border9/wall4" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall5" type="Sprite" parent="map/Border9"]
+position = Vector2( 32, 288 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border9/wall5" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall6" type="Sprite" parent="map/Border9"]
+position = Vector2( 32, 352 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border9/wall6" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall7" type="Sprite" parent="map/Border9"]
+position = Vector2( 32, 416 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border9/wall7" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall11" type="Sprite" parent="map/Border9"]
+position = Vector2( 32, 672 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border9/wall11" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall12" type="Sprite" parent="map/Border9"]
+position = Vector2( 32, 736 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border9/wall12" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall13" type="Sprite" parent="map/Border9"]
+position = Vector2( 32, 800 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border9/wall13" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall14" type="Sprite" parent="map/Border9"]
+position = Vector2( 32, 864 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border9/wall14" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall15" type="Sprite" parent="map/Border9"]
+position = Vector2( 32, 928 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border9/wall15" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall16" type="Sprite" parent="map/Border9"]
+position = Vector2( 32, 992 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border9/wall16" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall17" type="Sprite" parent="map/Border9"]
+position = Vector2( 32, 1056 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border9/wall17" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall18" type="Sprite" parent="map/Border9"]
+position = Vector2( 32, 1120 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border9/wall18" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="Border10" type="Node2D" parent="map"]
+position = Vector2( 1408, 1472 )
+rotation = -1.5708
+
+[node name="wall" type="Sprite" parent="map/Border10"]
+position = Vector2( 32, 32 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border10/wall" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall2" type="Sprite" parent="map/Border10"]
+position = Vector2( 32, 96 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border10/wall2" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall3" type="Sprite" parent="map/Border10"]
+position = Vector2( 32, 160 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border10/wall3" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall4" type="Sprite" parent="map/Border10"]
+position = Vector2( 32, 224 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border10/wall4" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall5" type="Sprite" parent="map/Border10"]
+position = Vector2( 32, 288 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border10/wall5" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall6" type="Sprite" parent="map/Border10"]
+position = Vector2( 32, 352 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border10/wall6" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall7" type="Sprite" parent="map/Border10"]
+position = Vector2( 32, 416 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border10/wall7" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall8" type="Sprite" parent="map/Border10"]
+position = Vector2( 32, 480 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border10/wall8" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall9" type="Sprite" parent="map/Border10"]
+position = Vector2( 32, 544 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border10/wall9" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall10" type="Sprite" parent="map/Border10"]
+position = Vector2( 32, 608 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border10/wall10" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall11" type="Sprite" parent="map/Border10"]
+position = Vector2( 32, 672 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border10/wall11" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall12" type="Sprite" parent="map/Border10"]
+position = Vector2( 32, 736 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border10/wall12" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall13" type="Sprite" parent="map/Border10"]
+position = Vector2( 32, 800 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border10/wall13" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall14" type="Sprite" parent="map/Border10"]
+position = Vector2( 32, 864 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border10/wall14" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall15" type="Sprite" parent="map/Border10"]
+position = Vector2( 32, 928 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border10/wall15" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall16" type="Sprite" parent="map/Border10"]
+position = Vector2( 32, 992 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border10/wall16" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall17" type="Sprite" parent="map/Border10"]
+position = Vector2( 32, 1056 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border10/wall17" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="Border11" type="Node2D" parent="map"]
+position = Vector2( 2496, 768 )
+
+[node name="wall" type="Sprite" parent="map/Border11"]
+position = Vector2( 32, 32 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border11/wall" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall2" type="Sprite" parent="map/Border11"]
+position = Vector2( 32, 96 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border11/wall2" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall3" type="Sprite" parent="map/Border11"]
+position = Vector2( 32, 160 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border11/wall3" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall4" type="Sprite" parent="map/Border11"]
+position = Vector2( 32, 224 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border11/wall4" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall5" type="Sprite" parent="map/Border11"]
+position = Vector2( 32, 288 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border11/wall5" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall6" type="Sprite" parent="map/Border11"]
+position = Vector2( 32, 352 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border11/wall6" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall7" type="Sprite" parent="map/Border11"]
+position = Vector2( 32, 416 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border11/wall7" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall8" type="Sprite" parent="map/Border11"]
+position = Vector2( 32, 480 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border11/wall8" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall9" type="Sprite" parent="map/Border11"]
+position = Vector2( 32, 544 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border11/wall9" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall10" type="Sprite" parent="map/Border11"]
+position = Vector2( 32, 608 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border11/wall10" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall11" type="Sprite" parent="map/Border11"]
+position = Vector2( 32, 672 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border11/wall11" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="Border12" type="Node2D" parent="map"]
+position = Vector2( 1088, 0 )
+rotation = -1.5708
+
+[node name="wall" type="Sprite" parent="map/Border12"]
+position = Vector2( 32, 32 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border12/wall" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall2" type="Sprite" parent="map/Border12"]
+position = Vector2( 32, 96 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border12/wall2" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall3" type="Sprite" parent="map/Border12"]
+position = Vector2( 32, 160 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border12/wall3" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall4" type="Sprite" parent="map/Border12"]
+position = Vector2( 32, 224 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border12/wall4" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall5" type="Sprite" parent="map/Border12"]
+position = Vector2( 32, 288 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border12/wall5" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall6" type="Sprite" parent="map/Border12"]
+position = Vector2( 32, 352 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border12/wall6" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall7" type="Sprite" parent="map/Border12"]
+position = Vector2( 32, 416 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border12/wall7" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall8" type="Sprite" parent="map/Border12"]
+position = Vector2( 32, 480 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border12/wall8" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall9" type="Sprite" parent="map/Border12"]
+position = Vector2( 32, 544 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border12/wall9" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall10" type="Sprite" parent="map/Border12"]
+position = Vector2( 32, 608 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border12/wall10" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall11" type="Sprite" parent="map/Border12"]
+position = Vector2( 32, 672 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border12/wall11" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall12" type="Sprite" parent="map/Border12"]
+position = Vector2( 32, 736 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border12/wall12" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall13" type="Sprite" parent="map/Border12"]
+position = Vector2( 32, 800 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border12/wall13" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall14" type="Sprite" parent="map/Border12"]
+position = Vector2( 32, 864 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border12/wall14" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall15" type="Sprite" parent="map/Border12"]
+position = Vector2( 32, 928 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border12/wall15" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall16" type="Sprite" parent="map/Border12"]
+position = Vector2( 32, 992 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border12/wall16" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall17" type="Sprite" parent="map/Border12"]
+position = Vector2( 32, 1056 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border12/wall17" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall18" type="Sprite" parent="map/Border12"]
+position = Vector2( 32, 1120 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border12/wall18" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall19" type="Sprite" parent="map/Border12"]
+position = Vector2( 32, 1184 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border12/wall19" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall20" type="Sprite" parent="map/Border12"]
+position = Vector2( 32, 1248 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border12/wall20" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall21" type="Sprite" parent="map/Border12"]
+position = Vector2( 32, 1312 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border12/wall21" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="Border13" type="Node2D" parent="map"]
+position = Vector2( 2368, 0 )
+
+[node name="wall" type="Sprite" parent="map/Border13"]
+position = Vector2( 32, 32 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border13/wall" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall2" type="Sprite" parent="map/Border13"]
+position = Vector2( 32, 96 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border13/wall2" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall3" type="Sprite" parent="map/Border13"]
+position = Vector2( 32, 160 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border13/wall3" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall4" type="Sprite" parent="map/Border13"]
+position = Vector2( 32, 224 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border13/wall4" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall5" type="Sprite" parent="map/Border13"]
+position = Vector2( 32, 288 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border13/wall5" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall6" type="Sprite" parent="map/Border13"]
+position = Vector2( 32, 352 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border13/wall6" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall7" type="Sprite" parent="map/Border13"]
+position = Vector2( 32, 416 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border13/wall7" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall8" type="Sprite" parent="map/Border13"]
+position = Vector2( 32, 480 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border13/wall8" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall9" type="Sprite" parent="map/Border13"]
+position = Vector2( 32, 544 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border13/wall9" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall10" type="Sprite" parent="map/Border13"]
+position = Vector2( 32, 608 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border13/wall10" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall11" type="Sprite" parent="map/Border13"]
+position = Vector2( 32, 672 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border13/wall11" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="Border14" type="Node2D" parent="map"]
+position = Vector2( -768, 320 )
+rotation = -1.5708
+
+[node name="wall" type="Sprite" parent="map/Border14"]
+position = Vector2( 32, 32 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border14/wall" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall2" type="Sprite" parent="map/Border14"]
+position = Vector2( 32, 96 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border14/wall2" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall3" type="Sprite" parent="map/Border14"]
+position = Vector2( 32, 160 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border14/wall3" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall4" type="Sprite" parent="map/Border14"]
+position = Vector2( 32, 224 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border14/wall4" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall5" type="Sprite" parent="map/Border14"]
+position = Vector2( 32, 288 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border14/wall5" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall6" type="Sprite" parent="map/Border14"]
+position = Vector2( 32, 352 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border14/wall6" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall7" type="Sprite" parent="map/Border14"]
+position = Vector2( 32, 416 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border14/wall7" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall8" type="Sprite" parent="map/Border14"]
+position = Vector2( 32, 480 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border14/wall8" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall9" type="Sprite" parent="map/Border14"]
+position = Vector2( 32, 544 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border14/wall9" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall10" type="Sprite" parent="map/Border14"]
+position = Vector2( 32, 608 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border14/wall10" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall11" type="Sprite" parent="map/Border14"]
+position = Vector2( 32, 672 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border14/wall11" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall12" type="Sprite" parent="map/Border14"]
+position = Vector2( 32, 736 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border14/wall12" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="Border15" type="Node2D" parent="map"]
+position = Vector2( -768, 320 )
+
+[node name="wall" type="Sprite" parent="map/Border15"]
+position = Vector2( 32, 32 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border15/wall" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall2" type="Sprite" parent="map/Border15"]
+position = Vector2( 32, 96 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border15/wall2" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall3" type="Sprite" parent="map/Border15"]
+position = Vector2( 32, 160 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border15/wall3" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall4" type="Sprite" parent="map/Border15"]
+position = Vector2( 32, 224 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border15/wall4" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall5" type="Sprite" parent="map/Border15"]
+position = Vector2( 32, 288 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border15/wall5" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall6" type="Sprite" parent="map/Border15"]
+position = Vector2( 32, 352 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border15/wall6" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall7" type="Sprite" parent="map/Border15"]
+position = Vector2( 32, 416 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border15/wall7" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall8" type="Sprite" parent="map/Border15"]
+position = Vector2( 32, 480 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border15/wall8" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall9" type="Sprite" parent="map/Border15"]
+position = Vector2( 32, 544 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border15/wall9" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall10" type="Sprite" parent="map/Border15"]
+position = Vector2( 32, 608 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border15/wall10" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall11" type="Sprite" parent="map/Border15"]
+position = Vector2( 32, 672 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border15/wall11" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall12" type="Sprite" parent="map/Border15"]
+position = Vector2( 32, 736 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border15/wall12" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall13" type="Sprite" parent="map/Border15"]
+position = Vector2( 32, 800 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border15/wall13" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall14" type="Sprite" parent="map/Border15"]
+position = Vector2( 32, 864 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border15/wall14" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall15" type="Sprite" parent="map/Border15"]
+position = Vector2( 32, 928 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border15/wall15" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall16" type="Sprite" parent="map/Border15"]
+position = Vector2( 32, 992 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border15/wall16" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall17" type="Sprite" parent="map/Border15"]
+position = Vector2( 32, 1056 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border15/wall17" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall18" type="Sprite" parent="map/Border15"]
+position = Vector2( 32, 1120 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border15/wall18" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall19" type="Sprite" parent="map/Border15"]
+position = Vector2( 32, 1184 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border15/wall19" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall20" type="Sprite" parent="map/Border15"]
+position = Vector2( 32, 1248 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border15/wall20" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall21" type="Sprite" parent="map/Border15"]
+position = Vector2( 32, 1312 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border15/wall21" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall22" type="Sprite" parent="map/Border15"]
+position = Vector2( 32, 1376 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border15/wall22" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall23" type="Sprite" parent="map/Border15"]
+position = Vector2( 32, 1440 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border15/wall23" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall24" type="Sprite" parent="map/Border15"]
+position = Vector2( 32, 1504 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border15/wall24" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="Border16" type="Node2D" parent="map"]
+position = Vector2( -768, 1920 )
+rotation = -1.5708
+
+[node name="wall" type="Sprite" parent="map/Border16"]
+position = Vector2( 32, 32 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border16/wall" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall2" type="Sprite" parent="map/Border16"]
+position = Vector2( 32, 96 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border16/wall2" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall3" type="Sprite" parent="map/Border16"]
+position = Vector2( 32, 160 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border16/wall3" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall4" type="Sprite" parent="map/Border16"]
+position = Vector2( 32, 224 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border16/wall4" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall5" type="Sprite" parent="map/Border16"]
+position = Vector2( 32, 288 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border16/wall5" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall6" type="Sprite" parent="map/Border16"]
+position = Vector2( 32, 352 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border16/wall6" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall7" type="Sprite" parent="map/Border16"]
+position = Vector2( 32, 416 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border16/wall7" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall8" type="Sprite" parent="map/Border16"]
+position = Vector2( 32, 480 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border16/wall8" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall9" type="Sprite" parent="map/Border16"]
+position = Vector2( 32, 544 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border16/wall9" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall10" type="Sprite" parent="map/Border16"]
+position = Vector2( 32, 608 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border16/wall10" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall11" type="Sprite" parent="map/Border16"]
+position = Vector2( 32, 672 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border16/wall11" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall12" type="Sprite" parent="map/Border16"]
+position = Vector2( 32, 736 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border16/wall12" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="Border17" type="Node2D" parent="map"]
+position = Vector2( 0, 1472 )
+
+[node name="wall" type="Sprite" parent="map/Border17"]
+position = Vector2( 32, 32 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border17/wall" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall2" type="Sprite" parent="map/Border17"]
+position = Vector2( 32, 96 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border17/wall2" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall3" type="Sprite" parent="map/Border17"]
+position = Vector2( 32, 160 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border17/wall3" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall4" type="Sprite" parent="map/Border17"]
+position = Vector2( 32, 224 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border17/wall4" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall5" type="Sprite" parent="map/Border17"]
+position = Vector2( 32, 288 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border17/wall5" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall6" type="Sprite" parent="map/Border17"]
+position = Vector2( 32, 352 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border17/wall6" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall7" type="Sprite" parent="map/Border17"]
+position = Vector2( 32, 416 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border17/wall7" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall8" type="Sprite" parent="map/Border17"]
+position = Vector2( 32, 480 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border17/wall8" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall9" type="Sprite" parent="map/Border17"]
+position = Vector2( 32, 544 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border17/wall9" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall10" type="Sprite" parent="map/Border17"]
+position = Vector2( 32, 608 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border17/wall10" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall11" type="Sprite" parent="map/Border17"]
+position = Vector2( 32, 672 )
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border17/wall11" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="Border18" type="Node2D" parent="map"]
+position = Vector2( 64, 2176 )
+rotation = -1.5708
+
+[node name="wall" type="Sprite" parent="map/Border18"]
+position = Vector2( 32, 32 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border18/wall" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall2" type="Sprite" parent="map/Border18"]
+position = Vector2( 32, 96 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border18/wall2" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall3" type="Sprite" parent="map/Border18"]
+position = Vector2( 32, 160 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border18/wall3" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall4" type="Sprite" parent="map/Border18"]
+position = Vector2( 32, 224 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border18/wall4" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall5" type="Sprite" parent="map/Border18"]
+position = Vector2( 32, 288 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border18/wall5" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall6" type="Sprite" parent="map/Border18"]
+position = Vector2( 32, 352 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border18/wall6" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall7" type="Sprite" parent="map/Border18"]
+position = Vector2( 32, 416 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border18/wall7" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall8" type="Sprite" parent="map/Border18"]
+position = Vector2( 32, 480 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border18/wall8" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall9" type="Sprite" parent="map/Border18"]
+position = Vector2( 32, 544 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border18/wall9" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall10" type="Sprite" parent="map/Border18"]
+position = Vector2( 32, 608 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border18/wall10" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall11" type="Sprite" parent="map/Border18"]
+position = Vector2( 32, 672 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border18/wall11" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall12" type="Sprite" parent="map/Border18"]
+position = Vector2( 32, 736 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border18/wall12" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall13" type="Sprite" parent="map/Border18"]
+position = Vector2( 32, 800 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border18/wall13" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall14" type="Sprite" parent="map/Border18"]
+position = Vector2( 32, 864 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border18/wall14" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall15" type="Sprite" parent="map/Border18"]
+position = Vector2( 32, 928 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border18/wall15" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall16" type="Sprite" parent="map/Border18"]
+position = Vector2( 32, 992 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border18/wall16" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="wall17" type="Sprite" parent="map/Border18"]
+position = Vector2( 32, 1056 )
+rotation = 1.5708
+scale = Vector2( 0.100588, 0.1 )
+texture = ExtResource( 6 )
+
+[node name="body_wall" parent="map/Border18/wall17" instance=ExtResource( 2 )]
+show_behind_parent = true
+scale = Vector2( 9.94154, 10 )
+
+[node name="TileMap" type="TileMap" parent="map"]
+tile_set = SubResource( 2 )
+format = 1
+tile_data = PoolIntArray( 327685, 0, 0, 327686, 0, 0, 393220, 0, 0, 393221, 0, 0, 393222, 0, 0, 458757, 0, 0 )
+
+[node name="Dwarf" parent="." instance=ExtResource( 1 )]
+position = Vector2( 288, 160 )
+
+[node name="Control" type="Control" parent="Dwarf"]
+margin_left = -282.0
+margin_top = -145.0
+margin_right = -248.0
+margin_bottom = -120.0
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="Dwarf/Control"]
+margin_left = 631.0
+margin_top = 364.0
+margin_right = 780.0
+margin_bottom = 431.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="QuitButton" type="ToolButton" parent="Dwarf/Control/Panel"]
+margin_right = 68.0
+margin_bottom = 58.0
+custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 0.54902, 0, 0, 1 )
+custom_colors/font_color_hover = Color( 0.682353, 0.00392157, 0.00392157, 1 )
+custom_colors/font_color_pressed = Color( 1, 0, 0, 1 )
+text = "Quit"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScoreButton" type="ToolButton" parent="Dwarf/Control/Panel"]
+margin_left = 68.0
+margin_top = 2.0
+margin_right = 132.0
+margin_bottom = 58.0
+custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 0, 0.545098, 0.109804, 1 )
+custom_colors/font_color_hover = Color( 0, 0.603922, 0.0941176, 1 )
+custom_colors/font_color_pressed = Color( 0, 0.803922, 0.0117647, 1 )
+text = "Score"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Dragon" parent="." instance=ExtResource( 13 )]
+position = Vector2( 459.424, 905.572 )
+[connection signal="pressed" from="Dwarf/Control/Panel/QuitButton" to="Dwarf/Control" method="_on_QuitButton_pressed"]
+[connection signal="pressed" from="Dwarf/Control/Panel/ScoreButton" to="CanvasLayer/ScorePopUp" method="_on_ScoreButton_pressed"]

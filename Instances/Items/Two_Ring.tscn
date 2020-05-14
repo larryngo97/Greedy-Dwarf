@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Instances/Items/Item_Base.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/Items/Two_Ring.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Items/twoRingPlaceholderImage.png" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 31, 31 )
+
+[node name="Two_Ring" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="Sprite" parent="." index="1"]
+texture = ExtResource( 3 )
+
+[node name="true_player_detector" type="Area2D" parent="." index="2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="true_player_detector" index="0"]
+shape = SubResource( 1 )
+[connection signal="body_entered" from="true_player_detector" to="." method="_on_true_player_detector_body_entered"]

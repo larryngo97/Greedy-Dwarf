@@ -1,0 +1,67 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Scripts/UI/Minimap/Minimap.gd" type="Script" id=1]
+[ext_resource path="res://Assets/UI/minimap/minimap_frame.png" type="Texture" id=2]
+[ext_resource path="res://Assets/UI/minimap/minimap_icon_player.png" type="Texture" id=3]
+[ext_resource path="res://Assets/UI/minimap/texture_blueprint.PNG" type="Texture" id=4]
+[ext_resource path="res://Assets/UI/minimap/minimap_icon_dragon.png" type="Texture" id=5]
+[ext_resource path="res://Assets/UI/minimap/minimap_icon_chest.png" type="Texture" id=6]
+[ext_resource path="res://Assets/UI/minimap/minimap_icon_buff.png" type="Texture" id=7]
+
+[node name="Minimap" type="MarginContainer"]
+margin_left = 1.22943
+margin_top = 0.922073
+margin_right = 201.229
+margin_bottom = 200.922
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+margin_right = 199.0
+margin_bottom = 199.0
+custom_constants/margin_right = 20
+custom_constants/margin_top = 20
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 20
+
+[node name="Grid" type="TextureRect" parent="MarginContainer"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 179.0
+margin_bottom = 179.0
+texture = ExtResource( 4 )
+stretch_mode = 2
+
+[node name="PlayerIcon" type="Sprite" parent="MarginContainer/Grid"]
+position = Vector2( 80, 80 )
+scale = Vector2( 0.012, 0.012 )
+texture = ExtResource( 3 )
+
+[node name="ChestIcon" type="Sprite" parent="MarginContainer/Grid"]
+visible = false
+position = Vector2( 75, 75 )
+scale = Vector2( 0.05, 0.05 )
+texture = ExtResource( 6 )
+
+[node name="DragonIcon" type="Sprite" parent="MarginContainer/Grid"]
+visible = false
+position = Vector2( 80, 80 )
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 5 )
+
+[node name="BuffIcon" type="Sprite" parent="MarginContainer/Grid"]
+visible = false
+position = Vector2( 68.4371, 85.1973 )
+scale = Vector2( 0.05, 0.05 )
+texture = ExtResource( 7 )
+
+[node name="Frame" type="NinePatchRect" parent="."]
+margin_right = 199.0
+margin_bottom = 199.0
+texture = ExtResource( 2 )
+patch_margin_left = 64
+patch_margin_top = 64
+patch_margin_right = 64
+patch_margin_bottom = 64

@@ -1,0 +1,42 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Scripts/Items/Treasure_Base.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Map/2D Pixel Dungeon Asset Pack/items and trap_animation/chest/chest_open_4.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Map/2D Pixel Dungeon Asset Pack/items and trap_animation/chest/chest_open_1.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Map/2D Pixel Dungeon Asset Pack/items and trap_animation/chest/chest_open_3.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Map/2D Pixel Dungeon Asset Pack/items and trap_animation/chest/chest_open_2.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Sound/items/collect.wav" type="AudioStream" id=6]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 24.6659, 25.5396 )
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 3 ), ExtResource( 5 ), ExtResource( 4 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[node name="Treasure_Base" type="Area2D"]
+light_mask = 2
+scale = Vector2( 0.8, 0.8 )
+script = ExtResource( 1 )
+_weight = 500
+_value = 100
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = 2
+shape = SubResource( 1 )
+
+[node name="Sprite" type="AnimatedSprite" parent="."]
+position = Vector2( 0.520741, 0.497631 )
+scale = Vector2( 3.71682, 3.80992 )
+frames = SubResource( 2 )
+frame = 2
+playing = true
+
+[node name="collect" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 6 )
+[connection signal="area_entered" from="." to="." method="_on_Treasure_Base_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_Treasure_Base_body_entered"]
